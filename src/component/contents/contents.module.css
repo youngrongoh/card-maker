@@ -1,0 +1,18 @@
+@value makerGreen from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value makerBlack from '../../common/colors.css';
+@value makerLightPink from '../../common/colors.css';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: makerWhite;
+  text-align: center;
+}
+
+.contents {
+  height: 100%;
+}

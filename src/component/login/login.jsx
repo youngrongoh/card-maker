@@ -1,30 +1,18 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './login.module.css';
 
-const Login = ({ authService }) => {
-  /*   
-  useEffect(() => {
-    authService.getUser().then((result) => {
-      if (result.user !== null) {
-        setUser(result);
-        history.push('/');
-      }
-    });
-  }, []);
-  */
-
+const Login = ({ authService, setUser }) => {
   const onLogin = (event) => {
-    authService.login(event.currentTarget.textContent);
+    authService //
+      .login(event.currentTarget.textContent)
+      .then(setUser);
   };
-
-  const onLogout = () => {};
 
   return (
     <section className={styles.login}>
-      <Header />
+      <Header onLogout={null} />
       <section>
         <h2 className={styles.title}>Login</h2>
         <ul className={styles.list}>

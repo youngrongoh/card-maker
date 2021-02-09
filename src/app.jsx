@@ -7,6 +7,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import Contents from './component/contents/contents';
 
 function App({ authService }) {
   const [user, setUser] = useState({});
@@ -14,15 +15,20 @@ function App({ authService }) {
   return (
     <div className={styles.app}>
       <Router>
+        음..
         <Switch>
-          <Route path="/login">
-            <Login authService={authService} />
-          </Route>
           <Route path="/" exact>
             {Object.keys(user).length === 0 ? (
-              <Redirect to="/login" />
+              <Login authService={authService} setUser={setUser} />
             ) : (
-              <h1>hi</h1>
+              <Redirect to="/app" />
+            )}
+          </Route>
+          <Route path="/app">
+            {Object.keys(user).length !== 0 ? (
+              <Contents authService={authService} setUser={setUser} />
+            ) : (
+              <Redirect to="/" />
             )}
           </Route>
         </Switch>
