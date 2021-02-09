@@ -1,38 +1,12 @@
-var firebaseConfig = {
+import firebase from 'firebase';
+
+var config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: 'business-card-maker-7521d.firebaseapp.com',
-  databaseURL: 'https://business-card-maker-7521d.firebaseio.com',
-  projectId: 'business-card-maker-7521d',
-  storageBucket: 'business-card-maker-7521d.appspot.com',
-  messagingSenderId: '467518096747',
-  appId: '1:467518096747:web:e10e176361ff23e060b82e',
-  measurementId: 'G-DL11QG9XQH',
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
-class Firebase {
-  constructor() {
-    this.firebase = window.firebase;
-    this.firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(config);
 
-    this.provider = new window.firebase.auth.GoogleAuthProvider();
-  }
-
-  signIn = () => {
-    this.firebase.auth().signInWithRedirect(this.provider);
-  };
-
-  signOut = () => {
-    this.firebase.auth().signOut();
-  };
-
-  getUser = async () => {
-    return await this.firebase
-      .auth()
-      .getRedirectResult()
-      .then((result) => {
-        return result;
-      });
-  };
-}
-
-export default Firebase;
+export default firebaseApp;
