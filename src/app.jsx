@@ -1,35 +1,18 @@
-import { useState } from 'react';
 import styles from './app.module.css';
 import Login from './component/login/login';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
-import Contents from './component/contents/contents';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Maker from './component/maker/maker';
 
 function App({ authService }) {
-  const [user, setUser] = useState({});
-
   return (
     <div className={styles.app}>
       <Router>
-        음..
         <Switch>
           <Route path="/" exact>
-            {Object.keys(user).length === 0 ? (
-              <Login authService={authService} setUser={setUser} />
-            ) : (
-              <Redirect to="/app" />
-            )}
+            <Login authService={authService} />
           </Route>
-          <Route path="/app">
-            {Object.keys(user).length !== 0 ? (
-              <Contents authService={authService} setUser={setUser} />
-            ) : (
-              <Redirect to="/" />
-            )}
+          <Route path="/maker">
+            <Maker authService={authService} />
           </Route>
         </Switch>
       </Router>
