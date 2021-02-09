@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './app.module.css';
+import styles from './app.module.css';
 import Login from './component/login/login';
 import {
   BrowserRouter as Router,
@@ -8,24 +8,26 @@ import {
   Switch,
 } from 'react-router-dom';
 
-function App({ firebase }) {
+function App({ authService }) {
   const [user, setUser] = useState({});
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/login">
-          <Login firebase={firebase} setUser={setUser} user={user} />
-        </Route>
-        <Route path="/" exact>
-          {Object.keys(user).length === 0 ? (
-            <Redirect to="/login" />
-          ) : (
-            <h1>hi</h1>
-          )}
-        </Route>
-      </Switch>
-    </Router>
+    <div className={styles.app}>
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <Login authService={authService} />
+          </Route>
+          <Route path="/" exact>
+            {Object.keys(user).length === 0 ? (
+              <Redirect to="/login" />
+            ) : (
+              <h1>hi</h1>
+            )}
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

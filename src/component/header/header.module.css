@@ -1,0 +1,32 @@
+@value makerGreen from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value makerBlack from '../../common/colors.css';
+
+.header {
+  width: 100%;
+  background-color: makerGreen;
+  position: relative;
+  padding: 0.5em;
+}
+
+.logo {
+  height: 2em;
+}
+
+.title {
+  margin: 0;
+  font-size: 2em;
+  color: makerWhite;
+}
+
+.button {
+  position: absolute;
+  top: 1em;
+  right: 2em;
+  background-color: makerBlack;
+  color: makerWhite;
+  padding: 1.2em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  border-radius: 1.2em;
+}

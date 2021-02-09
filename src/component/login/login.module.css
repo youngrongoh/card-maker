@@ -1,65 +1,38 @@
 @value makerGreen from '../../common/colors.css';
 @value makerWhite from '../../common/colors.css';
 @value makerBlack from '../../common/colors.css';
+@value makerLightPink from '../../common/colors.css';
 
 .login {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 360px;
-  background-color: makerGreen;
-  color: makerWhite;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-
-.header {
-  position: relative;
-  padding: 8px 0;
-}
-
-.logo {
-  height: 2em;
-}
-
-.app_title {
-  margin: 0;
-  font-size: 2em;
-}
-
-.logout_btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: makerBlack;
-  color: makerWhite;
-  padding: 8px 6px;
-  margin: 6px;
-  text-transform: uppercase;
-  font-size: 0.7em;
-}
-
-.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30em;
   background-color: makerWhite;
-  color: makerBlack;
-  overflow: hidden;
-  padding: 0 0.5em 1.5em 0.5em;
+  text-align: center;
 }
 
 .title {
   font-size: 2em;
 }
 
-.btn {
-  width: 100%;
-  font-size: 1.2em;
-  border: 2px solid makerGreen;
-  border-radius: 16px;
-  padding: 8px;
-  margin-bottom: 8px;
+.list {
+  padding: 0.5em;
+  list-style: none;
 }
 
-.footer {
-  overflow: hidden;
+.item {
+  margin-bottom: 0.5em;
+}
+
+.button {
+  width: 100%;
+  height: 2.5em;
+  font-size: 1.2rem;
+  border: 0.2rem solid makerGreen;
+  border-radius: 1.2rem;
+}
+
+.button:hover {
+  background-color: makerLightPink;
 }
