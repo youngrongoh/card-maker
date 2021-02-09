@@ -23,7 +23,12 @@ const Maker = ({ authService }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <section className={styles.contents}>
-        <h1>hi</h1>
+        <section className={styles.content}>
+          <h1>Card Maker</h1>
+        </section>
+        <section className={styles.content}>
+          <h1>Card Preview</h1>
+        </section>
       </section>
       <Footer />
     </section>
