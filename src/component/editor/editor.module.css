@@ -1,0 +1,13 @@
+.editor {
+  flex-basis: 50%;
+}
+
+.list {
+  margin: 0;
+  padding: 0 1em;
+}
+
+.item {
+  list-style: none;
+  margin-bottom: 1em;
+}

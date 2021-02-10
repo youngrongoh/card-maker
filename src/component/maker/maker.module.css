@@ -6,17 +6,11 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: makerWhite;
   text-align: center;
 }
 
-.contents {
-  width: 100%;
-  height: 100%;
+.container {
   display: flex;
-  justify-content: space-between;
-}
-
-.content {
-  width: 100%;
+  flex: 1;
+  background-color: makerWhite;
 }

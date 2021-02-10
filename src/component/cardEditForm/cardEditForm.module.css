@@ -1,0 +1,43 @@
+@value makerBlack from '/src/common/colors.css';
+@value makerWhite from '/src/common/colors.css';
+@value makerLightGrey from '/src/common/colors.css';
+@value makerPink from '/src/common/colors.css';
+@value makerGreen from '/src/common/colors.css';
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  line-height: 1.5em;
+  border: 1px solid #000;
+  border-radius: 0;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0.3em 0.5em;
+  outline: 0;
+}
+
+.textarea {
+  font-size: 0.8rem;
+  flex-basis: 100%;
+}
+
+.button {
+  color: makerWhite;
+  background-color: makerGreen;
+  line-height: 2em;
+  font-weight: bold;
+}
+
+.button.no_file {
+  color: makerBlack;
+  background-color: makerLightGrey;
+}
+
+.button.file {
+  color: makerBlack;
+  background-color: makerPink;
+}

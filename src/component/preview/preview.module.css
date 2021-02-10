@@ -1,0 +1,12 @@
+.preview {
+  flex-basis: 50%;
+}
+
+.list {
+  padding: 0;
+}
+
+.item {
+  list-style: none;
+  margin-bottom: 0.8em;
+}

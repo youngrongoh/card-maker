@@ -3,6 +3,8 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import styles from './maker.module.css';
 import { useHistory } from 'react-router-dom';
+import Editor from '../editor/editor';
+import Preview from '../preview/preview';
 
 const Maker = ({ authService }) => {
   const history = useHistory();
@@ -22,13 +24,9 @@ const Maker = ({ authService }) => {
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
-      <section className={styles.contents}>
-        <section className={styles.content}>
-          <h1>Card Maker</h1>
-        </section>
-        <section className={styles.content}>
-          <h1>Card Preview</h1>
-        </section>
+      <section className={styles.container}>
+        <Editor />
+        <Preview />
       </section>
       <Footer />
     </section>
