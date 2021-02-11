@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../button/button';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ card, onDelete, onUpdate }) => {
+const CardEditForm = ({ card, onUpdate, onDelete }) => {
   const {
     name,
     company,
@@ -15,16 +15,11 @@ const CardEditForm = ({ card, onDelete, onUpdate }) => {
   } = card;
 
   const onChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    const obj = { ...card };
-    obj[name] = value;
-    onUpdate(obj);
-  };
-
-  const onSubmit = (event) => {
+    if (event.currentTarget === null) {
+      return;
+    }
     event.preventDefault();
-    onDelete(card);
+    onUpdate({ ...card, [event.target.name]: event.target.value });
   };
 
   const onFileChange = () => {};
@@ -86,7 +81,7 @@ const CardEditForm = ({ card, onDelete, onUpdate }) => {
         <Button name={fileBtnName} onClick={onFileChange} />
       </div>
       <div className={styles.button}>
-        <Button name="Delete" onClick={onSubmit} />
+        <Button name="Delete" onClick={() => onDelete(card)} />
       </div>
     </form>
   );

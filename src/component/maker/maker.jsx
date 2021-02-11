@@ -7,8 +7,8 @@ import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
 const Maker = ({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: '1',
       name: 'Tom',
       company: 'Samsung',
@@ -19,7 +19,7 @@ const Maker = ({ authService }) => {
       fileName: '',
       fileURL: '',
     },
-    {
+    2: {
       id: '2',
       name: 'Bob',
       company: 'LG',
@@ -30,7 +30,7 @@ const Maker = ({ authService }) => {
       fileName: '',
       fileURL: '',
     },
-    {
+    3: {
       id: '3',
       name: 'Anne',
       company: 'Apple',
@@ -41,7 +41,7 @@ const Maker = ({ authService }) => {
       fileName: '',
       fileURL: '',
     },
-  ]);
+  });
 
   const history = useHistory();
 
@@ -49,20 +49,15 @@ const Maker = ({ authService }) => {
     authService.logout();
   };
 
-  const handleAdd = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
+  const handleAddOrUpdate = (card) => {
+    setCards((cards) => {
+      return { ...cards, [card.id]: card };
+    });
   };
 
   const handleDelete = (card) => {
-    const updated = cards.filter((_card) => _card !== card);
-    setCards(updated);
-  };
-
-  const handleUpdate = (card) => {
-    const index = cards.findIndex((_card) => _card.id === card.id);
-    const updated = [...cards];
-    updated[index] = card;
+    const updated = { ...cards };
+    delete updated[card.id];
     setCards(updated);
   };
 
@@ -80,9 +75,9 @@ const Maker = ({ authService }) => {
       <section className={styles.container}>
         <Editor
           cards={cards}
-          onAdd={handleAdd}
+          onAdd={handleAddOrUpdate}
+          onUpdate={handleAddOrUpdate}
           onDelete={handleDelete}
-          onUpdate={handleUpdate}
         />
         <Preview cards={cards} />
       </section>
