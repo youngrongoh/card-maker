@@ -14,7 +14,9 @@ function getClassName(name) {
   switch (name) {
     case 'No File':
       return styles.nofile;
-    case 'Add' || 'Delete':
+    case 'Add':
+      return '';
+    case 'Delete':
       return '';
     default:
       return styles.file;

@@ -1,45 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from '../button/button';
-import styles from './card_edit_form.module.css';
+import styles from './card_add_form.module.css';
 
-const CardEditForm = ({ card }) => {
-  const {
-    name,
-    company,
-    theme,
-    title,
-    email,
-    message,
-    fileName,
-    fileURL,
-  } = card;
-  const onSubmit = () => {};
+const CardAddForm = ({ onAdd }) => {
+  const formRef = useRef();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const card = Array.from(formRef.current).reduce((obj, input) => {
+      if (input.tagName !== 'BUTTON') {
+        obj[`${input.name}`] = input.value;
+      }
+      return obj;
+    }, {});
+    onAdd(card);
+  };
 
   const onFileChange = () => {};
 
-  const fileBtnName = fileName || 'No File';
-
   return (
-    <form className={styles.form}>
+    <form ref={formRef} className={styles.form}>
       <input
         className={`${styles.input} ${styles.text}`}
         type="text"
         name="name"
         placeholder="Name"
-        value={name}
       />
       <input
         className={`${styles.input} ${styles.text}`}
         type="text"
         name="company"
         placeholder="Company"
-        value={company}
       />
-      <select
-        className={`${styles.input} ${styles.select}`}
-        name="theme"
-        value={theme}
-      >
+      <select className={`${styles.input} ${styles.select}`} name="theme">
         <option value="dark">Dark</option>
         <option value="light">Light</option>
         <option value="colorful">Colorful</option>
@@ -49,29 +41,26 @@ const CardEditForm = ({ card }) => {
         type="text"
         name="title"
         placeholder="Title"
-        value={title}
       />
       <input
         className={`${styles.input} ${styles.text}`}
         type="email"
         name="email"
         placeholder="Email"
-        value={email}
       />
       <textarea
         className={`${styles.input} ${styles.textarea}`}
         name="message"
         placeholder="Message"
-        value={message}
       ></textarea>
       <div className={styles.button}>
-        <Button name={fileBtnName} onClick={onFileChange} />
+        <Button name="No File" onClick={onFileChange} />
       </div>
       <div className={styles.button}>
-        <Button name="Delete" onClick={onSubmit} />
+        <Button name="Add" onClick={onSubmit} />
       </div>
     </form>
   );
 };
 
-export default CardEditForm;
+export default CardAddForm;
