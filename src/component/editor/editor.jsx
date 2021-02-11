@@ -1,15 +1,17 @@
 import React from 'react';
-import CardEditForm from '../cardEditForm/cardEditForm';
+import CardEditForm from '../card_edit_form/card_edit_form';
 import styles from './editor.module.css';
 
-const Editor = (props) => {
+const Editor = ({ cards }) => {
   return (
     <section className={styles.editor}>
       <h1 className={styles.title}>Card Maker</h1>
       <ul className={styles.list}>
-        <li className={styles.item}>
-          <CardEditForm />
-        </li>
+        {cards.map((card) => (
+          <li className={styles.item}>
+            <CardEditForm card={card} />
+          </li>
+        ))}
       </ul>
     </section>
   );

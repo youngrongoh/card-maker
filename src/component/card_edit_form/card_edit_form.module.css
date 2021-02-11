@@ -9,7 +9,8 @@
   flex-wrap: wrap;
 }
 
-.input {
+.input,
+.button {
   flex: 1;
   line-height: 1.5em;
   border: 1px solid #000;
@@ -26,18 +27,5 @@
 }
 
 .button {
-  color: makerWhite;
-  background-color: makerGreen;
-  line-height: 2em;
-  font-weight: bold;
-}
-
-.button.no_file {
-  color: makerBlack;
-  background-color: makerLightGrey;
-}
-
-.button.file {
-  color: makerBlack;
-  background-color: makerPink;
+  padding: 0;
 }

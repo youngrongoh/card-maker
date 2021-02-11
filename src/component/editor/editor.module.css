@@ -1,5 +1,9 @@
+@value makerLightGrey from '/src/common/colors.css';
+
 .editor {
   flex-basis: 50%;
+  overflow-y: auto;
+  border-right: 1px solid makerLightGrey;
 }
 
 .list {

@@ -1,0 +1,23 @@
+@value makerGreen, makerWhite, makerBlack, makerLightGrey, makerPink from '/src/common/colors.css';
+
+.button {
+  width: 100%;
+  color: makerWhite;
+  background-color: makerGreen;
+  line-height: 2em;
+  font-weight: bold;
+}
+
+.button.nofile {
+  color: makerBlack;
+  background-color: makerLightGrey;
+}
+
+.button.file {
+  color: makerBlack;
+  background-color: makerPink;
+}
+
+.button:hover {
+  opacity: 0.8;
+}

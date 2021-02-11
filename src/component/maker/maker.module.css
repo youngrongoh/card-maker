@@ -13,4 +13,5 @@
   display: flex;
   flex: 1;
   background-color: makerWhite;
+  overflow: hidden;
 }
