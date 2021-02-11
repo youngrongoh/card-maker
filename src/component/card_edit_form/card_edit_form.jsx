@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../button/button';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ card, onDelete }) => {
+const CardEditForm = ({ card, onDelete, onUpdate }) => {
   const {
     name,
     company,
@@ -13,6 +13,14 @@ const CardEditForm = ({ card, onDelete }) => {
     fileName,
     fileURL,
   } = card;
+
+  const onChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    const obj = { ...card };
+    obj[name] = value;
+    onUpdate(obj);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -31,6 +39,7 @@ const CardEditForm = ({ card, onDelete }) => {
         name="name"
         placeholder="Name"
         value={name}
+        onChange={onChange}
       />
       <input
         className={`${styles.input} ${styles.text}`}
@@ -38,11 +47,13 @@ const CardEditForm = ({ card, onDelete }) => {
         name="company"
         placeholder="Company"
         value={company}
+        onChange={onChange}
       />
       <select
         className={`${styles.input} ${styles.select}`}
         name="theme"
         value={theme}
+        onChange={onChange}
       >
         <option value="dark">Dark</option>
         <option value="light">Light</option>
@@ -54,6 +65,7 @@ const CardEditForm = ({ card, onDelete }) => {
         name="title"
         placeholder="Title"
         value={title}
+        onChange={onChange}
       />
       <input
         className={`${styles.input} ${styles.text}`}
@@ -61,12 +73,14 @@ const CardEditForm = ({ card, onDelete }) => {
         name="email"
         placeholder="Email"
         value={email}
+        onChange={onChange}
       />
       <textarea
         className={`${styles.input} ${styles.textarea}`}
         name="message"
         placeholder="Message"
         value={message}
+        onChange={onChange}
       ></textarea>
       <div className={styles.button}>
         <Button name={fileBtnName} onClick={onFileChange} />
