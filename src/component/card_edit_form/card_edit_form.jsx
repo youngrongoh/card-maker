@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../button/button';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ card }) => {
+const CardEditForm = ({ card, onDelete }) => {
   const {
     name,
     company,
@@ -13,7 +13,11 @@ const CardEditForm = ({ card }) => {
     fileName,
     fileURL,
   } = card;
-  const onSubmit = () => {};
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    onDelete(card);
+  };
 
   const onFileChange = () => {};
 

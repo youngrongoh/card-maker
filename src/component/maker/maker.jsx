@@ -42,6 +42,7 @@ const Maker = ({ authService }) => {
       fileURL: '',
     },
   ]);
+
   const history = useHistory();
 
   const onLogout = () => {
@@ -49,8 +50,12 @@ const Maker = ({ authService }) => {
   };
 
   const handleAdd = (card) => {
-    const id = parseInt(cards[cards.length - 1].id) + 1;
-    const updated = [...cards, { id: `${id}`, ...card }];
+    const updated = [...cards, card];
+    setCards(updated);
+  };
+
+  const handleDelete = (card) => {
+    const updated = cards.filter((_card) => _card !== card);
     setCards(updated);
   };
 
@@ -66,7 +71,7 @@ const Maker = ({ authService }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <section className={styles.container}>
-        <Editor cards={cards} onAdd={handleAdd} />
+        <Editor cards={cards} onAdd={handleAdd} onDelete={handleDelete} />
         <Preview cards={cards} />
       </section>
       <Footer />

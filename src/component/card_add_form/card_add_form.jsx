@@ -6,12 +6,17 @@ const CardAddForm = ({ onAdd }) => {
   const formRef = useRef();
   const onSubmit = (e) => {
     e.preventDefault();
-    const card = Array.from(formRef.current).reduce((obj, input) => {
+
+    const initial = { id: Date.now(), fileName: '', fileURL: '' };
+
+    const card = Array.from(formRef.current).reduce((_card, input) => {
       if (input.tagName !== 'BUTTON') {
-        obj[`${input.name}`] = input.value;
+        _card[`${input.name}`] = input.value;
       }
-      return obj;
-    }, {});
+      return _card;
+    }, initial);
+
+    formRef.current.reset();
     onAdd(card);
   };
 
