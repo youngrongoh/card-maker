@@ -1,13 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../button/button';
+import InputFileButton from '../input_file_button/input_file_button';
 import styles from './card_add_form.module.css';
 
-const CardAddForm = ({ onAdd }) => {
+const CardAddForm = ({ onAdd, onFileSelect }) => {
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState({ name: '', url: '' });
   const formRef = useRef();
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const initial = { id: Date.now(), fileName: '', fileURL: '' };
+    const initial = { id: Date.now(), fileName: file.name, fileURL: file.url };
 
     const card = Array.from(formRef.current).reduce((_card, input) => {
       if (input.tagName !== 'BUTTON') {
@@ -20,7 +23,12 @@ const CardAddForm = ({ onAdd }) => {
     onAdd(card);
   };
 
-  const onFileChange = () => {};
+  const onFileChange = (event) => {
+    event.preventDefault();
+    onFileSelect((name, url) => {
+      setFile({ name, url: `${url}/${name}.jpg` });
+    }, setLoading);
+  };
 
   return (
     <form ref={formRef} className={styles.form}>
@@ -59,7 +67,11 @@ const CardAddForm = ({ onAdd }) => {
         placeholder="Message"
       ></textarea>
       <div className={styles.button}>
-        <Button name="No File" onClick={onFileChange} />
+        {loading ? (
+          <div className={styles.loading}></div>
+        ) : (
+          <InputFileButton fileName={file.name} onFileChange={onFileChange} />
+        )}
       </div>
       <div className={styles.button}>
         <Button name="Add" onClick={onSubmit} />

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
-const Maker = ({ authService }) => {
+const Maker = ({ authService, fileService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -16,7 +16,7 @@ const Maker = ({ authService }) => {
       title: 'FE',
       email: 'fetom@gmail.com',
       message: 'I love FE',
-      fileName: '',
+      fileName: 'Tom',
       fileURL: '',
     },
     2: {
@@ -27,7 +27,7 @@ const Maker = ({ authService }) => {
       title: 'BE',
       email: 'bebob@gmail.com',
       message: "don't forget",
-      fileName: '',
+      fileName: 'Bob',
       fileURL: '',
     },
     3: {
@@ -38,7 +38,7 @@ const Maker = ({ authService }) => {
       title: 'UX Designer',
       email: 'uxanne@gmail.com',
       message: "I'm still hungry",
-      fileName: '',
+      fileName: 'Anne',
       fileURL: '',
     },
   });
@@ -61,6 +61,23 @@ const Maker = ({ authService }) => {
     setCards(updated);
   };
 
+  const onFileUpload = (card, cb) => {
+    fileService.uploadFile((name, url) => {
+      const updated = {
+        ...card,
+        fileName: name,
+        fileURL: `${url}/${name}.jpg`,
+      };
+      setCards((cards) => {
+        return { ...cards, [card.id]: updated };
+      });
+    }, cb);
+  };
+
+  const onFileSelect = (cb, cb2) => {
+    fileService.uploadFile(cb, cb2);
+  };
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -78,6 +95,8 @@ const Maker = ({ authService }) => {
           onAdd={handleAddOrUpdate}
           onUpdate={handleAddOrUpdate}
           onDelete={handleDelete}
+          onFileUpload={onFileUpload}
+          onFileSelect={onFileSelect}
         />
         <Preview cards={cards} />
       </section>

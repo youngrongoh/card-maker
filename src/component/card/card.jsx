@@ -7,7 +7,6 @@ const Card = ({ card }) => {
   const { name, company, theme, title, email, message, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
-
   return (
     <div className={`${styles.card} ${getThemeClass(theme)}`}>
       <div className={styles.avatar}>

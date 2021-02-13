@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../button/button';
+import InputFileButton from '../input_file_button/input_file_button';
 import styles from './card_edit_form.module.css';
 
-const CardEditForm = ({ card, onUpdate, onDelete }) => {
-  const {
-    name,
-    company,
-    theme,
-    title,
-    email,
-    message,
-    fileName,
-    fileURL,
-  } = card;
+const CardEditForm = ({ card, onUpdate, onDelete, onFileUpload }) => {
+  const [loading, setLoading] = useState(false);
+  const { name, company, theme, title, email, message, fileName } = card;
 
   const onChange = (event) => {
     if (event.currentTarget === null) {
@@ -22,9 +15,10 @@ const CardEditForm = ({ card, onUpdate, onDelete }) => {
     onUpdate({ ...card, [event.target.name]: event.target.value });
   };
 
-  const onFileChange = () => {};
-
-  const fileBtnName = fileName || 'No File';
+  const onFileChange = (event) => {
+    event.preventDefault();
+    onFileUpload(card, setLoading);
+  };
 
   return (
     <form className={styles.form}>
@@ -78,7 +72,11 @@ const CardEditForm = ({ card, onUpdate, onDelete }) => {
         onChange={onChange}
       ></textarea>
       <div className={styles.button}>
-        <Button name={fileBtnName} onClick={onFileChange} />
+        {loading ? (
+          <div className={styles.loading}></div>
+        ) : (
+          <InputFileButton fileName={fileName} onFileChange={onFileChange} />
+        )}
       </div>
       <div className={styles.button}>
         <Button name="Delete" onClick={() => onDelete(card)} />
