@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
-const Maker = ({ authService, fileService }) => {
+const Maker = ({ FileInput, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -60,7 +60,7 @@ const Maker = ({ authService, fileService }) => {
     delete updated[card.id];
     setCards(updated);
   };
-
+  /* 
   const onFileUpload = (card, cb) => {
     fileService.uploadFile((name, url) => {
       const updated = {
@@ -77,7 +77,7 @@ const Maker = ({ authService, fileService }) => {
   const onFileSelect = (cb, cb2) => {
     fileService.uploadFile(cb, cb2);
   };
-
+ */
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -91,12 +91,11 @@ const Maker = ({ authService, fileService }) => {
       <Header onLogout={onLogout} />
       <section className={styles.container}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           onAdd={handleAddOrUpdate}
           onUpdate={handleAddOrUpdate}
           onDelete={handleDelete}
-          onFileUpload={onFileUpload}
-          onFileSelect={onFileSelect}
         />
         <Preview cards={cards} />
       </section>

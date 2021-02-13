@@ -3,14 +3,7 @@ import CardEditForm from '../card_edit_form/card_edit_form';
 import CardAddForm from '../card_add_form/card_add_form';
 import styles from './editor.module.css';
 
-const Editor = ({
-  cards,
-  onAdd,
-  onUpdate,
-  onDelete,
-  onFileUpload,
-  onFileSelect,
-}) => {
+const Editor = ({ FileInput, cards, onAdd, onUpdate, onDelete }) => {
   return (
     <section className={styles.editor}>
       <h1 className={styles.title}>Card Maker</h1>
@@ -21,16 +14,11 @@ const Editor = ({
               card={cards[key]}
               onUpdate={onUpdate}
               onDelete={onDelete}
-              onFileUpload={onFileUpload}
-              onFileSelect={onFileSelect}
+              FileInput={FileInput}
             />
           </li>
         ))}
-        <CardAddForm
-          onAdd={onAdd}
-          onFileUpload={onFileUpload}
-          onFileSelect={onFileSelect}
-        />
+        <CardAddForm FileInput={FileInput} onAdd={onAdd} />
       </ul>
     </section>
   );

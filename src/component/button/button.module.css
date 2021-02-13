@@ -2,6 +2,7 @@
 
 .button {
   width: 100%;
+  height: 100%;
   color: makerWhite;
   background-color: makerGreen;
   line-height: 2em;
