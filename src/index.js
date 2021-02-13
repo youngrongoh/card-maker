@@ -5,8 +5,10 @@ import App from './app';
 import AuthService from './service/auth_service';
 import ImageUploader from './service/image_uploader';
 import InputFileButton from './component/input_file_button/input_file_button';
+import Database from './service/database';
 
 const authService = new AuthService();
+const database = new Database();
 const imageUploader = new ImageUploader();
 const FileInput = (props) => (
   <InputFileButton {...props} imageUploader={imageUploader} />
@@ -14,7 +16,7 @@ const FileInput = (props) => (
 
 ReactDOM.render(
   <React.StrictMode>
-    <App FileInput={FileInput} authService={authService} />
+    <App FileInput={FileInput} authService={authService} database={database} />
   </React.StrictMode>,
   document.getElementById('root')
 );

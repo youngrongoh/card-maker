@@ -3,7 +3,7 @@ import Button from '../button/button';
 import styles from './card_add_form.module.css';
 
 const CardAddForm = ({ FileInput, onAdd }) => {
-  const [file, setFile] = useState({ name: null, url: null });
+  const [file, setFile] = useState({ name: '', url: '' });
   const formRef = useRef();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +11,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
     const initial = { id: Date.now(), fileName: file.name, fileURL: file.url };
 
     const card = Array.from(formRef.current).reduce((_card, input) => {
-      if (input.tagName !== 'BUTTON') {
+      if (input.tagName !== 'BUTTON' && input.name) {
         _card[`${input.name}`] = input.value;
       }
       return _card;
