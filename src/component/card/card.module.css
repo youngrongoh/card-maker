@@ -12,6 +12,8 @@
   padding: 0.2em 0;
   box-shadow: 6px 6px 8px 0px makerShadow;
   max-width: 30rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .card.dark {
